@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  prometheus:
+    image: "prom/prometheus:latest"
+    hostname: "prometheus"
+    networks:
+    - website_monitoring
+    ports:
+    - "127.0.0.1:9090:9090"
+    user: nobody
+    volumes:
+    - "./config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    - "./config/prometheus/targets.yml:/etc/prometheus/targets.yml"
+    - "prometheus_data:/prometheus"
+    command:
+    - "--config.file=/etc/prometheus/prometheus.yml"
+    - "--storage.tsdb.path=/prometheus"
+    - "--storage.tsdb.retention.time=30d"
+    - '--web.console.libraries=/usr/share/prometheus/console_libraries'
+    - '--web.console.templates=/usr/share/prometheus/consoles'
+    - '--web.enable-admin-api'
+
+  blackbox-exporter:
+    image: "prom/blackbox-exporter:latest"
+    hostname: "blackbox"
+    networks:
+    - website_monitoring
+    volumes:
+    - "./config/blackbox-exporter/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml"
+
+volumes:
+  prometheus_data:
+
+networks:
+  website_monitoring:
