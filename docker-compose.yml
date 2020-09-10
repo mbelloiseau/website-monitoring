@@ -5,6 +5,7 @@ services:
   prometheus:
     image: "prom/prometheus:latest"
     hostname: "prometheus"
+    restart: always
     networks:
     - website_monitoring
     ports:
@@ -25,10 +26,25 @@ services:
   blackbox-exporter:
     image: "prom/blackbox-exporter:latest"
     hostname: "blackbox"
+    restart: always
     networks:
     - website_monitoring
     volumes:
     - "./config/blackbox-exporter/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml"
+
+  grafana:
+    image: "grafana/grafana:latest"
+    hostname: "grafana"
+    restart: always
+    networks:
+    - website_monitoring
+    ports:
+    - "127.0.0.1:3000:3000"
+    environment:
+    - "GF_SECURITY_ADMIN_PASSWORD=CHANGEME"
+    - "GF_AUTH_ANONYMOUS_ENABLED=true"
+    volumes:
+    - "./config/grafana/provisioning:/etc/grafana/provisioning"
 
 volumes:
   prometheus_data:
