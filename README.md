@@ -1,5 +1,9 @@
 # website-monitoring
-Website monitoring with Prometheus and Grafana
+Website monitoring with
+
+* [Prometheus](https://github.com/prometheus/prometheus)
+* [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
+* [Grafana](https://github.com/grafana/grafana).
 
 ## Dependencies
 
