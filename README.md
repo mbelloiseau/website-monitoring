@@ -8,6 +8,8 @@ Website monitoring with Prometheus and Grafana
 
 ## Usage
 
-* `./gen_target.sh website-1.tld website-2.tld`
-* `docker-compose up -d`
-* [Grafana](http://localhost:3000/d/HiWYTqDGp/website-monitoring)
+* Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh`
+* Create and start containers `docker-compose up -d`
+* [Visualize dashboard](http://localhost:3000/d/HiWYTqDGp/website-monitoring)
+
+## Resources
