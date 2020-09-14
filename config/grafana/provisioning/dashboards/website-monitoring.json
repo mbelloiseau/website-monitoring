@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1599901112258,
+  "id": 1,
+  "iteration": 1600108338600,
   "links": [],
   "panels": [
     {
@@ -83,7 +83,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_http_status_code{instance=\"$target\"}",
+          "expr": "probe_http_status_code{job=\"$http_job\",instance=\"$target\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -169,7 +169,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_http_redirects{instance=\"$target\"}",
+          "expr": "probe_http_redirects{job=\"$http_job\",instance=\"$target\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -254,7 +254,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_http_version{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_http_version{job=\"$http_job\",instance=\"$target\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -339,7 +339,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_dns_lookup_time_seconds{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_dns_lookup_time_seconds{job=\"$http_job\",instance=\"$target\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -425,7 +425,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_http_ssl{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_http_ssl{job=\"$http_job\",instance=\"$target\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -521,7 +521,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(probe_ssl_earliest_cert_expiry{instance=~\"$target\",job=\"website-monitoring-http\"} - time()) / (60*60*24)",
+          "expr": "(probe_ssl_earliest_cert_expiry{job=\"$http_job\",instance=\"$target\"} - time()) / (60*60*24)",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -606,7 +606,7 @@
       "tableColumn": "version",
       "targets": [
         {
-          "expr": "probe_tls_version_info{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_tls_version_info{job=\"$http_job\",instance=\"$target\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -695,7 +695,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "probe_success{job=\"website-monitoring-icmp\",instance=\"$target\"}",
+          "expr": "probe_success{job=\"$icmp_job\",instance=\"$target\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -712,11 +712,6 @@
       "valueMaps": [
         {
           "op": "=",
-          "text": "N/A",
-          "value": "null"
-        },
-        {
-          "op": "=",
           "text": "No",
           "value": "0"
         },
@@ -726,7 +721,7 @@
           "value": "1"
         }
       ],
-      "valueName": "avg"
+      "valueName": "current"
     },
     {
       "cacheTimeout": null,
@@ -793,7 +788,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=~\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=~\"$target\"}[$__interval]) * 100",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -881,7 +876,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=~\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=~\"$target\"}[$__interval]) * 100",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -969,7 +964,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=~\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=~\"$target\"}[$__interval]) * 100",
           "format": "time_series",
           "instant": false,
           "interval": "",
@@ -1058,21 +1053,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_duration_seconds{job=\"$http_job\",instance=\"$target\"}",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "duration",
           "refId": "A"
         },
         {
-          "expr": "probe_http_status_code{job=\"website-monitoring-http\",instance=\"$target\"} != 200",
+          "expr": "probe_http_status_code{job=\"$http_job\",instance=\"$target\"} != 200",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "bad status code",
           "refId": "C"
         },
         {
-          "expr": "probe_http_status_code{job=\"website-monitoring-http\",instance=\"$target\"} == 200",
+          "expr": "probe_http_status_code{job=\"$http_job\",instance=\"$target\"} == 200",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "status code",
@@ -1177,13 +1172,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{job=\"website-monitoring-icmp\",instance=\"$target\"}",
+          "expr": "probe_duration_seconds{job=\"$icmp_job\",instance=\"$target\"}",
           "interval": "",
           "legendFormat": "duration",
           "refId": "A"
         },
         {
-          "expr": "(probe_success{job=\"website-monitoring-icmp\",instance=\"$target\"} == 0) + 1",
+          "expr": "probe_success{job=\"$icmp_job\",instance=\"$target\"} == 0",
           "interval": "",
           "legendFormat": "failure",
           "refId": "B"
@@ -1273,7 +1268,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_http_duration_seconds{job=\"website-monitoring-http\",instance=\"$target\"}",
+          "expr": "probe_http_duration_seconds{job=\"$http_job\",instance=\"$target\"}",
           "interval": "",
           "legendFormat": "{{ phase }}",
           "refId": "A"
@@ -1363,7 +1358,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_icmp_duration_seconds{job=\"website-monitoring-icmp\",instance=\"$target\"}",
+          "expr": "probe_icmp_duration_seconds{job=\"$icmp_job\",instance=\"$target\"}",
           "interval": "",
           "legendFormat": "{{ phase }}",
           "refId": "A"
@@ -1411,7 +1406,7 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "30s",
   "schemaVersion": 22,
   "style": "dark",
   "tags": [],
@@ -1442,12 +1437,52 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "website-monitoring-http",
+          "value": "website-monitoring-http"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "http_job",
+        "options": [
+          {
+            "selected": true,
+            "text": "website-monitoring-http",
+            "value": "website-monitoring-http"
+          }
+        ],
+        "query": "website-monitoring-http",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "website-monitoring-icmp",
+          "value": "website-monitoring-icmp"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "icmp_job",
+        "options": [
+          {
+            "selected": true,
+            "text": "website-monitoring-icmp",
+            "value": "website-monitoring-icmp"
+          }
+        ],
+        "query": "website-monitoring-icmp",
+        "skipUrlSync": false,
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "2020-09-12T09:29:22.021Z",
-    "to": "2020-09-12T09:36:10.425Z"
+    "from": "now-30m",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
