@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1600268256628,
+  "id": 3,
+  "iteration": 1600283913148,
   "links": [],
   "panels": [
     {
@@ -38,7 +38,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 6,
         "x": 0,
         "y": 0
@@ -124,7 +124,7 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 6,
         "x": 6,
         "y": 0
@@ -201,7 +201,7 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 10,
+        "h": 8,
         "w": 12,
         "x": 12,
         "y": 0
@@ -269,8 +269,8 @@
           "format": "short",
           "label": "status code",
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "550",
+          "min": "0",
           "show": true
         },
         {
@@ -306,10 +306,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 6,
         "x": 0,
-        "y": 5
+        "y": 4
       },
       "id": 13,
       "interval": null,
@@ -393,10 +393,10 @@
         "thresholdMarkers": true
       },
       "gridPos": {
-        "h": 5,
+        "h": 4,
         "w": 6,
         "x": 6,
-        "y": 5
+        "y": 4
       },
       "id": 10,
       "interval": null,
@@ -462,218 +462,6 @@
       "valueName": "current"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 0,
-        "y": 10
-      },
-      "hiddenSeries": false,
-      "id": 14,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 1,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/(s)/",
-          "color": "#C4162A",
-          "transform": "negative-Y"
-        },
-        {
-          "alias": "/(f)/",
-          "color": "#37872D"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg_over_time(probe_duration_seconds{job=\"$http_job\",instance=~\"$slowest\"}[$__interval])",
-          "interval": "",
-          "legendFormat": "{{ instance }} (s)",
-          "refId": "A"
-        },
-        {
-          "expr": "avg_over_time(probe_duration_seconds{job=\"$http_job\",instance=~\"$fastest\"}[$__interval])",
-          "interval": "",
-          "legendFormat": "{{ instance }} (f)",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Fastest and slowest probe duration (top 3)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "status code",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 10
-      },
-      "hiddenSeries": false,
-      "id": 15,
-      "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 1,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "alias": "/(s)/",
-          "color": "#C4162A",
-          "transform": "negative-Y"
-        },
-        {
-          "alias": "/(f)/",
-          "color": "#37872D"
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "avg_over_time(probe_duration_seconds{job=\"$http_job\",instance=~\"$slowest\"}[$__interval])",
-          "interval": "",
-          "legendFormat": "{{ instance }} (s)",
-          "refId": "A"
-        },
-        {
-          "expr": "avg_over_time(probe_duration_seconds{job=\"$http_job\",instance=~\"$fastest\"}[$__interval])",
-          "interval": "",
-          "legendFormat": "{{ instance }} (f)",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Fastest and slowest probe duration (top 3)",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": "status code",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
       "columns": [],
       "datasource": null,
       "fontSize": "100%",
@@ -681,13 +469,13 @@
         "h": 12,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 8
       },
       "id": 6,
       "pageSize": 10,
       "showHeader": true,
       "sort": {
-        "col": null,
+        "col": 2,
         "desc": false
       },
       "styles": [
@@ -949,7 +737,7 @@
     "list": [
       {
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "website-monitoring-http",
           "value": "website-monitoring-http"
         },
@@ -966,60 +754,6 @@
         "query": "website-monitoring-http",
         "skipUrlSync": false,
         "type": "constant"
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Prometheus",
-        "definition": "query_result(topk(3, avg_over_time(probe_duration_seconds{job=\"website-monitoring-http\"}[$__interval])))",
-        "hide": 0,
-        "includeAll": true,
-        "index": -1,
-        "label": "slowest targets",
-        "multi": false,
-        "name": "slowest",
-        "options": [],
-        "query": "query_result(topk(3, avg_over_time(probe_duration_seconds{job=\"website-monitoring-http\"}[$__interval])))",
-        "refresh": 2,
-        "regex": ".*instance=\"(.*?)\".*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": "Prometheus",
-        "definition": "query_result(bottomk(3, avg_over_time(probe_duration_seconds{job=\"website-monitoring-http\"}[$__interval])))",
-        "hide": 0,
-        "includeAll": true,
-        "index": -1,
-        "label": "fastest targets",
-        "multi": false,
-        "name": "fastest",
-        "options": [],
-        "query": "query_result(bottomk(3, avg_over_time(probe_duration_seconds{job=\"website-monitoring-http\"}[$__interval])))",
-        "refresh": 2,
-        "regex": ".*instance=\"(.*?)\".*",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
       }
     ]
   },
