@@ -22,7 +22,7 @@ Website monitoring with
 
 * Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh`
 * Create and start containers `docker-compose up -d`
-* [Visualize dashboard](http://localhost:3000/d/HiWYTqDGp/website-monitoring)
+* [Visualize dashboards](http://localhost:3000/)
 
 If you already have Prometheus and Prometheus blackbox exporter up and running just import the [dashboard](website-monitoring.json)
 
