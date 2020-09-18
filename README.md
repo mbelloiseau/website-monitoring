@@ -1,14 +1,18 @@
 # website-monitoring
-Website monitoring with
 
-* [Prometheus](https://github.com/prometheus/prometheus)
-* [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
-* [Grafana](https://github.com/grafana/grafana)
+Monitore your websites availability with [Prometheus](https://github.com/prometheus/prometheus), [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter), [Grafana](https://github.com/grafana/grafana).
 
 ## Dependencies
 
-* [docker](https://docs.docker.com/install/)
-* [docker-composer](https://docs.docker.com/compose/install/)
+[docker](https://docs.docker.com/install/) and [docker-composer](https://docs.docker.com/compose/install/)
+
+## Usage
+
+* Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh`
+* Create and start containers `docker-compose up -d`
+* [Visualize dashboards](http://localhost:3000/)
+
+If you already have Prometheus and Prometheus blackbox exporter up and running just import the dashboards ([website-monitoring](website-monitoring.json) or [overview](overview.json)) and use the right [datasource](screenshots/import.png) and [jobs](screenshots/import.png) (http_job and icmp_job)
 
 ## Dashboards
 
@@ -21,13 +25,6 @@ Website monitoring with
 
 ![overview](screenshots/overview_1.png)
 
-## Usage
-
-* Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh`
-* Create and start containers `docker-compose up -d`
-* [Visualize dashboards](http://localhost:3000/)
-
-If you already have Prometheus and Prometheus blackbox exporter up and running just import the [dashboard](website-monitoring.json) and use the right [datasource](screenshots/import.png) and [jobs](screenshots/import.png) (http_job and icmp_job)
 
 ## PromQL
 
@@ -39,5 +36,3 @@ Some useful PromQL queries
   * `probe_http_status_code{job="website-monitoring-http",instance="$target"} != 200`
 * Count the number of each status code
   * `count_values("code", probe_http_status_code)`
-
-## Resources
