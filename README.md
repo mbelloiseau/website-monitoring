@@ -1,10 +1,14 @@
 # website-monitoring
 
-Monitore your websites availability with [Prometheus](https://github.com/prometheus/prometheus), [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter), [Grafana](https://github.com/grafana/grafana).
+Monitore your websites availability with
+* [Prometheus](https://github.com/prometheus/prometheus)
+* [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
+* [Grafana](https://github.com/grafana/grafana).
 
 ## Dependencies
 
-[docker](https://docs.docker.com/install/) and [docker-composer](https://docs.docker.com/compose/install/)
+* [docker](https://docs.docker.com/install/)
+* [docker-composer](https://docs.docker.com/compose/install/)
 
 ## Usage
 
@@ -17,6 +21,15 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 ## Dashboards
 
 * Website monitoring
+  * HTTP status code
+  * HTTP redirects
+  * HTTP version
+  * TLS version
+  * Certificate validity
+  * ICMP
+  * DNS lookup time
+  * Availability over the last 24 hours, 3 days and 7 days
+  * Probe duration and status code history
 
 ![web-1](screenshots/website-monitoring_1.png)
 ![web-2](screenshots/website-monitoring_2.png)
