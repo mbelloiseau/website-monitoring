@@ -65,9 +65,9 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": null,
-  "iteration": 1600364632435,
+  "iteration": 1600449245644,
   "links": [],
   "panels": [
     {
@@ -1205,7 +1205,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:185",
           "alias": "failure",
           "color": "#FA6400",
           "legend": false,
@@ -1215,7 +1214,6 @@
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:186",
           "alias": "duration",
           "color": "#1F60C4"
         }
@@ -1257,7 +1255,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:215",
           "format": "s",
           "label": null,
           "logBase": 1,
@@ -1266,7 +1263,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:216",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1349,7 +1345,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:360",
           "format": "s",
           "label": null,
           "logBase": 1,
@@ -1358,7 +1353,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:361",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1441,7 +1435,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:431",
           "format": "s",
           "label": null,
           "logBase": 1,
@@ -1450,7 +1443,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:432",
           "format": "short",
           "label": null,
           "logBase": 1,

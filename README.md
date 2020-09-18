@@ -3,7 +3,7 @@
 Monitore your websites availability with
 * [Prometheus](https://github.com/prometheus/prometheus)
 * [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
-* [Grafana](https://github.com/grafana/grafana).
+* [Grafana](https://github.com/grafana/grafana)
 
 ## Dependencies
 
@@ -35,6 +35,11 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 ![web-2](screenshots/website-monitoring_2.png)
 
 * Overview
+  * Total number of targets
+  * Percentage of invalid status code
+  * Percentage of available targets
+  * Percentage of targets using SSL
+  * global invalid status code history
 
 ![overview](screenshots/overview_1.png)
 
