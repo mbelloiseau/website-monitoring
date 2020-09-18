@@ -39,7 +39,7 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
   * Percentage of invalid status code
   * Percentage of available targets
   * Percentage of targets using SSL
-  * global invalid status code history
+  * Global invalid status code history
 
 ![overview](screenshots/overview_1.png)
 
@@ -49,8 +49,8 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 Some useful PromQL queries
 
 * Number of days till certificate expiration
-  * `(probe_ssl_earliest_cert_expiry{instance=~"$target",job="website-monitoring-http"} - time()) / (60*60*24)`
+  * `(probe_ssl_earliest_cert_expiry{instance=~"$target",job="$http_job"} - time()) / (60*60*24)`
 * Display bad HTTP status code
-  * `probe_http_status_code{job="website-monitoring-http",instance="$target"} != 200`
+  * `probe_http_status_code{job="$http_job",instance=~"$target"} != 200`
 * Count the number of each status code
   * `count_values("code", probe_http_status_code)`
