@@ -14,6 +14,9 @@ Website monitoring with
 
 * Website monitoring
 
+![web-1](screenshots/website-monitoring_1.png)
+![web-2](screenshots/website-monitoring_2.png)
+
 * Overview
 
 ![overview](screenshots/overview_1.png)
@@ -24,7 +27,7 @@ Website monitoring with
 * Create and start containers `docker-compose up -d`
 * [Visualize dashboards](http://localhost:3000/)
 
-If you already have Prometheus and Prometheus blackbox exporter up and running just import the [dashboard](website-monitoring.json)
+If you already have Prometheus and Prometheus blackbox exporter up and running just import the [dashboard](website-monitoring.json) and use the right [datasource](screenshots/import.png) and [jobs](screenshots/import.png) (http_job and icmp_job)
 
 ## PromQL
 
