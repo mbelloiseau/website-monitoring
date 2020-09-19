@@ -35,6 +35,7 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
   * Probe duration and status code history
 
 ![web-2](screenshots/website-monitoring_2.png)
+![web-3](screenshots/website-monitoring_3.png)
 
 * Overview
   * Total number of targets
