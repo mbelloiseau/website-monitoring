@@ -1,5 +1,7 @@
 # website-monitoring
 
+![web-1](screenshots/website-monitoring_1.png)
+
 Monitore your websites availability with
 * [Prometheus](https://github.com/prometheus/prometheus)
 * [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
@@ -12,11 +14,12 @@ Monitore your websites availability with
 
 ## Usage
 
-* Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh`
+* `git clone git@github.com:mbelloiseau/website-monitoring.git && cd website-monitoring`
+* Edit `config/prometheus/targets.yml` (see targets.yml.example) or use `./gen_target.sh website-1.tld website-2.tld ...`
 * Create and start containers `docker-compose up -d`
 * [Visualize dashboards](http://localhost:3000/)
 
-If you already have Prometheus and Prometheus blackbox exporter up and running just import the dashboards ([website-monitoring](website-monitoring.json) or [overview](overview.json)) and use the right [datasource](screenshots/import.png) and [jobs](screenshots/import.png) (http_job and icmp_job)
+If you already have Prometheus and Prometheus blackbox exporter up and running just import the dashboards ([website-monitoring](dashboards/website-monitoring.json) or [overview](dashboards/overview.json)) and use the right [datasource](screenshots/import.png) and [jobs](screenshots/import.png) (http_job and icmp_job)
 
 ## Dashboards
 
@@ -31,7 +34,6 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
   * Availability over the last 24 hours, 3 days and 7 days
   * Probe duration and status code history
 
-![web-1](screenshots/website-monitoring_1.png)
 ![web-2](screenshots/website-monitoring_2.png)
 
 * Overview
@@ -42,7 +44,6 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
   * Global invalid status code history
 
 ![overview](screenshots/overview_1.png)
-
 
 ## PromQL
 
