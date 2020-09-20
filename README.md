@@ -23,26 +23,28 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 
 ## Dashboards
 
-* Website monitoring
-  * HTTP status code
-  * HTTP redirects
-  * HTTP version
-  * TLS version
-  * Certificate validity
-  * ICMP
-  * DNS lookup time
-  * Availability over the last 24 hours, 3 days and 7 days
-  * Probe duration and status code history
+###  Website monitoring
+  
+* HTTP status code
+* HTTP redirects
+* HTTP version
+* TLS version
+* Certificate validity
+* ICMP
+* DNS lookup time
+* Availability over the last 24 hours, 3 days and 7 days
+* Probe duration and status code history
 
 ![web-2](screenshots/website-monitoring_2.png)
 ![web-3](screenshots/website-monitoring_3.png)
 
-* Overview
-  * Total number of targets
-  * Percentage of invalid status code
-  * Percentage of available targets
-  * Percentage of targets using SSL
-  * Global invalid status code history
+### Overview
+
+* Total number of targets
+* Percentage of invalid status code
+* Percentage of available targets
+* Percentage of targets using SSL
+* Global invalid status code history
 
 ![overview](screenshots/overview_1.png)
 
@@ -56,3 +58,5 @@ Some useful PromQL queries
   * `probe_http_status_code{job="$http_job",instance=~"$target"} != 200`
 * Count the number of each status code
   * `count_values("code", probe_http_status_code)`
+* Percentage of HTTP 200
+  * `((count(count by (instance) (probe_http_status_code == 200))) / (count(count by (instance) (probe_http_status_code)))) * 100`
