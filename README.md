@@ -48,7 +48,9 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 
 ![overview](screenshots/overview_1.png)
 
-## PromQL
+## Tips and tricks
+
+### PromQL
 
 Some useful PromQL queries
 
@@ -60,3 +62,8 @@ Some useful PromQL queries
   * `count_values("code", probe_http_status_code)`
 * Percentage of HTTP 200
   * `((count(count by (instance) (probe_http_status_code == 200))) / (count(count by (instance) (probe_http_status_code)))) * 100`
+
+### Misc
+
+* Request blackbox exporter
+  * `curl -s "localhost:9115/probe?module=http_2xx&target=target.tld"`

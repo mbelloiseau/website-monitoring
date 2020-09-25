@@ -29,6 +29,8 @@ services:
     restart: always
     networks:
     - website_monitoring
+    ports:
+    - "127.0.0.1:9115:9115"
     volumes:
     - "./config/blackbox-exporter/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml"
 
