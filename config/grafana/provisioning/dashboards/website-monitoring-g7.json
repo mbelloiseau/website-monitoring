@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
-  "iteration": 1601671311112,
+  "id": 2,
+  "iteration": 1601708984016,
   "links": [],
   "panels": [
     {
@@ -74,7 +74,8 @@
         {
           "alias": "duration",
           "color": "#1F60C4",
-          "fill": 3
+          "fill": 3,
+          "fillGradient": 3
         },
         {
           "alias": "invalid status code",
@@ -115,7 +116,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Probe duration / HTTP status code",
+      "title": "HTTP probe duration / status code",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -154,7 +155,7 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -173,19 +174,17 @@
         "y": 0
       },
       "hiddenSeries": false,
-      "id": 3,
+      "id": 6,
       "legend": {
-        "alignAsTable": true,
         "avg": true,
         "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
         "values": true
       },
-      "lines": false,
+      "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
@@ -196,23 +195,47 @@
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "seriesOverrides": [],
+      "seriesOverrides": [
+        {
+          "alias": "failure",
+          "color": "#C4162A",
+          "legend": false,
+          "lines": false,
+          "pointradius": 1,
+          "points": true,
+          "yaxis": 2
+        },
+        {
+          "alias": "duration",
+          "color": "#1F60C4",
+          "fill": 3,
+          "fillGradient": 3
+        }
+      ],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_icmp_duration_seconds{instance=\"$target\"}",
+          "expr": "probe_duration_seconds{instance=\"$target\",job=\"website-monitoring-icmp\"}",
+          "hide": false,
           "interval": "",
-          "legendFormat": "{{ phase }}",
+          "legendFormat": "duration",
           "refId": "A"
+        },
+        {
+          "expr": "probe_success{job=\"website-monitoring-icmp\",instance=\"$target\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "failure",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "probe_icmp_duration_seconds",
+      "title": "ICMP probe duration / failure",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -237,11 +260,11 @@
         },
         {
           "format": "short",
-          "label": null,
+          "label": "failure",
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -310,6 +333,103 @@
       "timeRegions": [],
       "timeShift": null,
       "title": "probe_http_duration_seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.2.0",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "probe_icmp_duration_seconds{instance=\"$target\"}",
+          "interval": "",
+          "legendFormat": "{{ phase }}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "probe_icmp_duration_seconds",
       "tooltip": {
         "shared": true,
         "sort": 0,
