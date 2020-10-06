@@ -2,7 +2,8 @@
 
 ![web-1](screenshots/website-monitoring_1.png)
 
-Monitore your websites availability with
+Monitore your websites availability, http status code (current and history), certificate, redirects and more with
+
 * [Prometheus](https://github.com/prometheus/prometheus)
 * [Prometheus blackbox exporter](https://github.com/prometheus/blackbox_exporter)
 * [Grafana](https://github.com/grafana/grafana)
@@ -41,8 +42,7 @@ If you already have Prometheus and Prometheus blackbox exporter up and running j
 ### Overview
 
 * Total number of targets
-* Percentage of invalid status code
-* Percentage of available targets
+* Percentage of HTTP 200 status code
 * Percentage of targets using SSL
 * Global invalid status code history
 
