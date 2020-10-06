@@ -1543,7 +1543,7 @@
     ]
   },
   "timezone": "",
-  "title": "Website monitoring",
+  "title": "Website monitoring (Grafana 6+)",
   "uid": "HiWYTqDGp",
   "variables": {
     "list": []

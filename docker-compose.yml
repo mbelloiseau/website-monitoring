@@ -33,7 +33,7 @@ services:
     - "./config/blackbox-exporter/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml"
 
   grafana:
-    image: "grafana/grafana:latest"
+    image: "grafana/grafana:7.2.0"
     hostname: "grafana"
     restart: always
     networks:

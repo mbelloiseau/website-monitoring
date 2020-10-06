@@ -1,4 +1,54 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    },
+    {
+      "name": "VAR_HTTP_JOB",
+      "type": "constant",
+      "label": "http_job",
+      "value": "website-monitoring-http",
+      "description": ""
+    },
+    {
+      "name": "VAR_ICMP_JOB",
+      "type": "constant",
+      "label": "icmp_job",
+      "value": "website-monitoring-icmp",
+      "description": ""
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.2.0"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -14,12 +64,13 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
-  "iteration": 1601912482310,
+  "graphTooltip": 1,
+  "id": null,
+  "iteration": 1601971789980,
   "links": [],
   "panels": [
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -77,11 +128,11 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "HTTP Status code",
+      "title": "HTTP status code",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -156,7 +207,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -219,7 +270,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -283,7 +334,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -325,7 +376,7 @@
       "pluginVersion": "7.2.0",
       "targets": [
         {
-          "expr": "probe_dns_lookup_time_seconds{instance=\"$target\",job=\"website-monitoring-http\"}",
+          "expr": "probe_dns_lookup_time_seconds{instance=\"$target\",job=\"$http_job\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -338,7 +389,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -393,7 +444,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -448,7 +499,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -511,7 +562,7 @@
       "pluginVersion": "7.2.0",
       "targets": [
         {
-          "expr": "probe_success{job=\"website-monitoring-icmp\",instance=\"$target\"}",
+          "expr": "probe_success{job=\"$icmp_job\",instance=\"$target\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -524,7 +575,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -575,7 +626,7 @@
       "pluginVersion": "7.2.0",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=\"$target\"}[$__interval]) * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -584,11 +635,11 @@
       ],
       "timeFrom": "1d",
       "timeShift": null,
-      "title": "availability",
+      "title": "Availability",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -639,7 +690,7 @@
       "pluginVersion": "7.2.0",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=\"$target\"}[$__interval]) * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -648,11 +699,11 @@
       ],
       "timeFrom": "3d",
       "timeShift": null,
-      "title": "availability",
+      "title": "Availability",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {},
@@ -703,7 +754,7 @@
       "pluginVersion": "7.2.0",
       "targets": [
         {
-          "expr": "avg_over_time(probe_success{job=\"website-monitoring-http\",instance=\"$target\"}[$__interval]) * 100",
+          "expr": "avg_over_time(probe_success{job=\"$http_job\",instance=\"$target\"}[$__interval]) * 100",
           "instant": false,
           "interval": "",
           "legendFormat": "",
@@ -712,7 +763,7 @@
       ],
       "timeFrom": "1w",
       "timeShift": null,
-      "title": "availability",
+      "title": "Availability",
       "type": "stat"
     },
     {
@@ -720,7 +771,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -788,7 +839,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{instance=\"$target\",job=\"website-monitoring-http\"}",
+          "expr": "probe_duration_seconds{instance=\"$target\",job=\"$http_job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "duration",
@@ -854,7 +905,8 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
+      "description": "Display only ICMP failures",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -893,7 +945,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:191",
           "alias": "failure",
           "color": "#FA6400",
           "legend": false,
@@ -903,7 +954,6 @@
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:192",
           "alias": "duration",
           "color": "#1F60C4",
           "fill": 3,
@@ -915,14 +965,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "probe_duration_seconds{instance=\"$target\",job=\"website-monitoring-icmp\"}",
+          "expr": "probe_duration_seconds{instance=\"$target\",job=\"$icmp_job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "duration",
           "refId": "A"
         },
         {
-          "expr": "probe_success{job=\"website-monitoring-icmp\",instance=\"$target\"} == 0",
+          "expr": "probe_success{job=\"$icmp_job\",instance=\"$target\"} == 0",
           "hide": false,
           "interval": "",
           "legendFormat": "failure",
@@ -949,7 +999,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:219",
           "format": "s",
           "label": null,
           "logBase": 1,
@@ -958,7 +1007,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:220",
           "format": "short",
           "label": "failure",
           "logBase": 1,
@@ -977,7 +1025,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1032,7 +1080,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "probe_http_duration_seconds",
+      "title": "HTTP probe (by phase)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1074,7 +1122,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_PROMETHEUS}",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1129,7 +1177,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "probe_icmp_duration_seconds",
+      "title": "ICMP probe (by phase)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1175,12 +1223,8 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        },
-        "datasource": "Prometheus",
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(instance)",
         "hide": 0,
         "includeAll": false,
@@ -1198,16 +1242,56 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "value": "${VAR_HTTP_JOB}",
+          "text": "${VAR_HTTP_JOB}",
+          "selected": false
+        },
+        "hide": 2,
+        "label": "http_job",
+        "name": "http_job",
+        "options": [
+          {
+            "value": "${VAR_HTTP_JOB}",
+            "text": "${VAR_HTTP_JOB}",
+            "selected": false
+          }
+        ],
+        "query": "${VAR_HTTP_JOB}",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "value": "${VAR_ICMP_JOB}",
+          "text": "${VAR_ICMP_JOB}",
+          "selected": false
+        },
+        "hide": 2,
+        "label": "icmp_job",
+        "name": "icmp_job",
+        "options": [
+          {
+            "value": "${VAR_ICMP_JOB}",
+            "text": "${VAR_ICMP_JOB}",
+            "selected": false
+          }
+        ],
+        "query": "${VAR_ICMP_JOB}",
+        "skipUrlSync": false,
+        "type": "constant"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Website monitoring (G7)",
+  "title": "Website monitoring (Grafana 7+)",
   "uid": "EmUBHUFGk",
   "version": 1
 }
