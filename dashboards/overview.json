@@ -277,7 +277,7 @@
           "format": "none",
           "label": "status code",
           "logBase": 1,
-          "max": null,
+          "max": "550",
           "min": "0",
           "show": true
         },
