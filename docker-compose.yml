@@ -3,7 +3,7 @@ version: '3'
 services:
 
   prometheus:
-    image: "prom/prometheus:latest"
+    image: "prom/prometheus:v2.42.0"
     hostname: "prometheus"
     restart: always
     networks:
@@ -30,8 +30,6 @@ services:
     restart: always
     networks:
     - website_monitoring
-    ports:
-    - "127.0.0.1:9115:9115"
     volumes:
     - "./config/blackbox-exporter/blackbox-exporter.yml:/etc/prometheus/blackbox-exporter.yml"
     command:
