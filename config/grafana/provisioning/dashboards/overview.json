@@ -24,7 +24,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -475,7 +475,13 @@
               },
               {
                 "id": "links",
-                "value": []
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Go to website",
+                    "url": "http://${__data.fields.Target}"
+                  }
+                ]
               }
             ]
           },
