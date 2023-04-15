@@ -3,27 +3,38 @@
     "list": [
       {
         "builtIn": 1,
-        "datasource": "-- Grafana --",
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
         "enable": true,
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1600975868828,
+  "id": 2,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -59,9 +70,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "count(count by (instance) (probe_http_status_code{job=\"$http_job\"}))",
           "instant": true,
           "interval": "",
@@ -69,16 +84,16 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " ",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "thresholds": {
@@ -127,9 +142,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "((count(count by (instance) (probe_http_ssl{job=\"$http_job\"} == 1))) / (count(count by (instance) (probe_http_ssl{job=\"$http_job\"})))) * 100",
           "instant": true,
           "interval": "",
@@ -137,8 +156,6 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " ",
       "type": "stat"
     },
@@ -147,12 +164,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -180,7 +194,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "9.4.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -198,6 +212,10 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_http_status_code{job=\"$http_job\"} != 200",
           "interval": "",
           "legendFormat": "{{ instance }}",
@@ -205,9 +223,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Invalid status code history",
       "tooltip": {
         "shared": true,
@@ -216,15 +232,12 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "decimals": null,
           "format": "none",
           "label": "status code",
           "logBase": 1,
@@ -234,23 +247,21 @@
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [],
           "thresholds": {
@@ -299,9 +310,13 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "((count(count by (instance) (probe_http_status_code == 200))) / (count(count by (instance) (probe_http_status_code)))) * 100",
           "instant": true,
           "interval": "",
@@ -309,20 +324,64 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " ",
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": "left",
-            "filterable": false
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
           },
-          "mappings": [],
+          "links": [],
+          "mappings": [
+            {
+              "options": {
+                "200": {
+                  "index": 0,
+                  "text": "200 OK"
+                },
+                "401": {
+                  "index": 1,
+                  "text": "401 Unauthorized"
+                },
+                "403": {
+                  "index": 2,
+                  "text": "403 Forbidden"
+                },
+                "404": {
+                  "index": 3,
+                  "text": "404 Not Found"
+                },
+                "500": {
+                  "index": 4,
+                  "text": "500 Internal Server Error"
+                },
+                "502": {
+                  "index": 5,
+                  "text": "502 Bad Gateway"
+                },
+                "503": {
+                  "index": 6,
+                  "text": "503 Service Unavailable"
+                },
+                "504": {
+                  "index": 7,
+                  "text": "504 Gateway Timeout"
+                }
+              },
+              "type": "value"
+            }
+          ],
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -345,8 +404,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -377,8 +439,11 @@
             },
             "properties": [
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -407,6 +472,10 @@
               {
                 "id": "custom.width",
                 "value": 500
+              },
+              {
+                "id": "links",
+                "value": []
               }
             ]
           },
@@ -421,8 +490,11 @@
                 "value": "days"
               },
               {
-                "id": "custom.displayMode",
-                "value": "color-background"
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
               },
               {
                 "id": "thresholds",
@@ -480,6 +552,15 @@
       },
       "id": 8,
       "options": {
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": [
           {
@@ -488,9 +569,13 @@
           }
         ]
       },
-      "pluginVersion": "7.2.0",
+      "pluginVersion": "9.4.7",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_http_status_code{job=\"$http_job\"}",
           "format": "table",
           "instant": true,
@@ -499,6 +584,10 @@
           "refId": "A"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_http_redirects{job=\"$http_job\"} - 0",
           "format": "table",
           "instant": true,
@@ -507,6 +596,10 @@
           "refId": "B"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_http_ssl{job=\"$http_job\"} - 0",
           "format": "table",
           "instant": true,
@@ -515,6 +608,10 @@
           "refId": "C"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_http_version{job=\"$http_job\"} - 0",
           "format": "table",
           "instant": true,
@@ -523,6 +620,10 @@
           "refId": "D"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "((probe_ssl_earliest_cert_expiry{job=\"$http_job\"}) - time()) / (60*60*24) - 0",
           "format": "table",
           "instant": true,
@@ -531,6 +632,10 @@
           "refId": "E"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_duration_seconds{job=\"$http_job\"} - 0",
           "format": "table",
           "instant": true,
@@ -539,6 +644,10 @@
           "refId": "F"
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "expr": "probe_dns_lookup_time_seconds{job=\"$http_job\"} - 0",
           "format": "table",
           "instant": true,
@@ -547,8 +656,6 @@
           "refId": "G"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": " ",
       "transformations": [
         {
@@ -577,31 +684,21 @@
           }
         }
       ],
+      "transparent": true,
       "type": "table"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 26,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "website-monitoring-http",
-          "value": "website-monitoring-http"
-        },
         "hide": 2,
         "label": "http_job",
         "name": "http_job",
-        "options": [
-          {
-            "selected": true,
-            "text": "website-monitoring-http",
-            "value": "website-monitoring-http"
-          }
-        ],
         "query": "website-monitoring-http",
         "queryValue": "",
         "skipUrlSync": false,
@@ -617,5 +714,6 @@
   "timezone": "",
   "title": "Overview",
   "uid": "OmAoLmKGk",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
