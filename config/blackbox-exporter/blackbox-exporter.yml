@@ -1,7 +1,7 @@
 modules:
   http_2xx:
     prober: http
-    timeout: 5s
+    timeout: 2s
     http:
       valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
       valid_status_codes: []
@@ -10,6 +10,7 @@ modules:
       ip_protocol_fallback: false 
   icmp:
     prober: icmp
+    timeout: 100ms
     icmp:
       preferred_ip_protocol: "ip4"
       ip_protocol_fallback: false 
