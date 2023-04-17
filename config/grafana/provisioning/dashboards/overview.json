@@ -24,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -202,6 +201,7 @@
         "type": "prometheus",
         "uid": "PBFA97CFB590B2093"
       },
+      "description": "Displays only the 5 targets with the worst availability rates over the last 24 hours. See dashboard settings -> Variables -> \"bottomk_http\"",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -660,7 +660,7 @@
           "refId": "G"
         }
       ],
-      "title": " ",
+      "title": " Overview",
       "transformations": [
         {
           "id": "merge",
@@ -1065,7 +1065,7 @@
       "type": "stat"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -1090,6 +1090,10 @@
           "value": [
             "$__all"
           ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "query_result(bottomk(5, avg_over_time(probe_success{job=\"$http_job\"}[1d]) * 100 ))",
         "hide": 2,
