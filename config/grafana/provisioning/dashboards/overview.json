@@ -37,286 +37,6 @@
           "custom": {
             "align": "center",
             "cellOptions": {
-              "mode": "gradient",
-              "type": "color-background"
-            },
-            "filterable": false,
-            "inspect": false
-          },
-          "links": [],
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-orange",
-                "value": 90
-              },
-              {
-                "color": "dark-yellow",
-                "value": 97
-              },
-              {
-                "color": "dark-green",
-                "value": 99
-              }
-            ]
-          },
-          "unit": "percent"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Target"
-            },
-            "properties": [
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "type": "auto"
-                }
-              },
-              {
-                "id": "links",
-                "value": [
-                  {
-                    "targetBlank": true,
-                    "title": "Go to website",
-                    "url": "http://${__data.fields.Target}"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 10,
-        "x": 0,
-        "y": 0
-      },
-      "id": 11,
-      "options": {
-        "footer": {
-          "countRows": false,
-          "enablePagination": true,
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[6h]) * 100",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[1d]) * 100",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "B"
-        },
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "exemplar": false,
-          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[7d]) * 100",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "C"
-        }
-      ],
-      "title": "Availability",
-      "transformations": [
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {
-              "Time": true,
-              "__name__": true,
-              "job": true
-            },
-            "indexByName": {},
-            "renameByName": {
-              "Value #A": "6 hours",
-              "Value #B": "1 day",
-              "Value #C": "7 days",
-              "Value #D": "HTTP version",
-              "Value #E": "Certificate validity",
-              "Value #F": "Probe duration",
-              "Value #G": "DNS lookup time",
-              "Value #H": "Availability (3 hours)",
-              "Value #I": "Availability (24 hours)",
-              "instance": "Target"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "description": "Displays only the 5 targets with the worst availability rates over the last 24 hours. See dashboard settings -> Variables -> \"bottomk_http\"",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "fillOpacity": 90,
-            "lineWidth": 0,
-            "spanNulls": false
-          },
-          "mappings": [
-            {
-              "options": {
-                "401": {
-                  "index": 0,
-                  "text": "401 Unauthorized"
-                },
-                "403": {
-                  "index": 1,
-                  "text": "403 Forbidden"
-                },
-                "404": {
-                  "index": 2,
-                  "text": "404 Not Found"
-                },
-                "500": {
-                  "index": 3,
-                  "text": "500 Internal Server Error"
-                },
-                "502": {
-                  "index": 4,
-                  "text": "502 Bad Gateway"
-                },
-                "503": {
-                  "index": 5,
-                  "text": "503 Service Unavailable"
-                },
-                "504": {
-                  "index": 6,
-                  "text": "504 Gateway Timeout"
-                }
-              },
-              "type": "value"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 200
-              },
-              {
-                "color": "dark-red",
-                "value": 201
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 14,
-        "x": 10,
-        "y": 0
-      },
-      "id": 13,
-      "options": {
-        "alignValue": "left",
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": false
-        },
-        "mergeValues": false,
-        "rowHeight": 0.8,
-        "showValue": "auto",
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "probe_http_status_code{instance=~\"$bottomk_http\"}",
-          "format": "time_series",
-          "legendFormat": "{{instance}}",
-          "range": true,
-          "refId": "A"
-        }
-      ],
-      "timeFrom": "1d",
-      "title": "Status code timeline",
-      "type": "state-timeline"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": "center",
-            "cellOptions": {
               "type": "auto"
             },
             "filterable": true,
@@ -409,6 +129,10 @@
                     }
                   ]
                 }
+              },
+              {
+                "id": "custom.width",
+                "value": 300
               }
             ]
           },
@@ -458,6 +182,10 @@
                     "type": "value"
                   }
                 ]
+              },
+              {
+                "id": "custom.width",
+                "value": 150
               }
             ]
           },
@@ -468,10 +196,6 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": 500
-              },
-              {
                 "id": "links",
                 "value": [
                   {
@@ -480,45 +204,6 @@
                     "url": "http://${__data.fields.Target}"
                   }
                 ]
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Certificate validity"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "days"
-              },
-              {
-                "id": "custom.cellOptions",
-                "value": {
-                  "mode": "gradient",
-                  "type": "color-background"
-                }
-              },
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "dark-red",
-                      "value": null
-                    },
-                    {
-                      "color": "dark-orange",
-                      "value": 25
-                    },
-                    {
-                      "color": "dark-green",
-                      "value": 30
-                    }
-                  ]
-                }
               }
             ]
           },
@@ -545,14 +230,75 @@
                 "value": "s"
               }
             ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Redirects"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "HTTP version"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Probe duration"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "custom.filterable",
+                "value": false
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "DNS lookup time"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              },
+              {
+                "id": "custom.filterable"
+              }
+            ]
           }
         ]
       },
       "gridPos": {
         "h": 11,
-        "w": 24,
+        "w": 15,
         "x": 0,
-        "y": 10
+        "y": 0
       },
       "id": 8,
       "options": {
@@ -566,12 +312,7 @@
           "show": false
         },
         "showHeader": true,
-        "sortBy": [
-          {
-            "desc": false,
-            "displayName": "Certificate validity"
-          }
-        ]
+        "sortBy": []
       },
       "pluginVersion": "9.4.7",
       "targets": [
@@ -630,6 +371,7 @@
           },
           "expr": "((probe_ssl_earliest_cert_expiry{job=\"$http_job\"}) - time()) / (60*60*24) - 0",
           "format": "table",
+          "hide": true,
           "instant": true,
           "interval": "",
           "legendFormat": "",
@@ -699,44 +441,127 @@
       },
       "fieldConfig": {
         "defaults": {
-          "color": {
-            "fixedColor": "dark-blue",
-            "mode": "fixed"
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "mode": "gradient",
+              "type": "color-background"
+            },
+            "filterable": false,
+            "inspect": false
           },
+          "links": [],
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "rgb(255, 255, 255)",
+                "color": "dark-red",
                 "value": null
+              },
+              {
+                "color": "dark-orange",
+                "value": 90
+              },
+              {
+                "color": "dark-yellow",
+                "value": 97
+              },
+              {
+                "color": "dark-green",
+                "value": 99
               }
             ]
           },
-          "unit": "targets"
+          "unit": "percent"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Target"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "auto"
+                }
+              },
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Go to website",
+                    "url": "http://${__data.fields.Target}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "6 hours"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "1 day"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "7 days"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 150
+              }
+            ]
+          }
+        ]
       },
       "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 0,
-        "y": 21
+        "h": 11,
+        "w": 9,
+        "x": 15,
+        "y": 0
       },
-      "id": 2,
+      "id": 11,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
           "fields": "",
-          "values": false
+          "reducer": [
+            "sum"
+          ],
+          "show": false
         },
-        "textMode": "auto"
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "1 day"
+          }
+        ]
       },
       "pluginVersion": "9.4.7",
       "targets": [
@@ -745,15 +570,79 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "count(count by (instance) (probe_http_status_code{job=\"$http_job\"}))",
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[6h]) * 100",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[1d]) * 100",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "avg_over_time(probe_success{job=\"$http_job\"}[7d]) * 100",
+          "format": "table",
+          "hide": false,
           "instant": true,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "C"
         }
       ],
-      "title": " ",
-      "type": "stat"
+      "title": "Availability",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "__name__": true,
+              "job": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value #A": "6 hours",
+              "Value #B": "1 day",
+              "Value #C": "7 days",
+              "Value #D": "HTTP version",
+              "Value #E": "Certificate validity",
+              "Value #F": "Probe duration",
+              "Value #G": "DNS lookup time",
+              "Value #H": "Availability (3 hours)",
+              "Value #I": "Availability (24 hours)",
+              "instance": "Target"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": {
@@ -762,41 +651,294 @@
       },
       "fieldConfig": {
         "defaults": {
+          "custom": {
+            "align": "center",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "filterable": true,
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Target"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "targetBlank": true,
+                    "title": "Go to website",
+                    "url": "http://${__data.fields.Target}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Certificate validity"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "days"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "mode": "gradient",
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "dark-red",
+                      "value": null
+                    },
+                    {
+                      "color": "dark-orange",
+                      "value": 25
+                    },
+                    {
+                      "color": "dark-green",
+                      "value": 30
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "custom.width",
+                "value": 200
+              },
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fingerprint sha265"
+            },
+            "properties": [
+              {
+                "id": "custom.minWidth",
+                "value": 450
+              },
+              {
+                "id": "custom.filterable"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 14,
+      "options": {
+        "footer": {
+          "countRows": false,
+          "enablePagination": true,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": false,
+            "displayName": "Certificate validity"
+          }
+        ]
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "((probe_ssl_earliest_cert_expiry{job=\"$http_job\"}) - time()) / (60*60*24) - 0",
+          "format": "table",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "probe_ssl_last_chain_info{job=\"$http_job\"}",
+          "format": "table",
+          "hide": false,
+          "instant": true,
+          "legendFormat": "__auto",
+          "range": false,
+          "refId": "B"
+        }
+      ],
+      "title": " Overview",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "Time": true,
+              "Value #B": true,
+              "__name__": true,
+              "fingerprint_sha256": false,
+              "job": true
+            },
+            "indexByName": {},
+            "renameByName": {
+              "Value #A": "Certificate validity",
+              "Value #B": "",
+              "Value #C": "SSL",
+              "Value #D": "HTTP version",
+              "Value #E": "Certificate validity",
+              "Value #F": "Probe duration",
+              "Value #G": "DNS lookup time",
+              "Value #H": "Availability (3 hours)",
+              "Value #I": "Availability (24 hours)",
+              "fingerprint_sha256": "Fingerprint sha265",
+              "instance": "Target",
+              "issuer": "Issuer",
+              "subject": "Subject",
+              "subjectalternative": "Subject alternative"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "Displays only the 5 targets with the worst availability rates over the last 24 hours. See dashboard settings -> Variables -> \"bottomk_http\"",
+      "fieldConfig": {
+        "defaults": {
           "color": {
-            "mode": "palette-classic"
+            "mode": "thresholds"
           },
           "custom": {
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            }
+            "fillOpacity": 90,
+            "lineWidth": 0,
+            "spanNulls": false
           },
-          "mappings": []
+          "mappings": [
+            {
+              "options": {
+                "401": {
+                  "index": 0,
+                  "text": "401 Unauthorized"
+                },
+                "403": {
+                  "index": 1,
+                  "text": "403 Forbidden"
+                },
+                "404": {
+                  "index": 2,
+                  "text": "404 Not Found"
+                },
+                "500": {
+                  "index": 3,
+                  "text": "500 Internal Server Error"
+                },
+                "502": {
+                  "index": 4,
+                  "text": "502 Bad Gateway"
+                },
+                "503": {
+                  "index": 5,
+                  "text": "503 Service Unavailable"
+                },
+                "504": {
+                  "index": 6,
+                  "text": "504 Gateway Timeout"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": null
+              },
+              {
+                "color": "dark-green",
+                "value": 200
+              },
+              {
+                "color": "dark-red",
+                "value": 201
+              }
+            ]
+          }
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 9,
-        "w": 4,
-        "x": 4,
-        "y": 21
+        "h": 11,
+        "w": 24,
+        "x": 0,
+        "y": 22
       },
-      "id": 10,
+      "id": 13,
       "options": {
+        "alignValue": "left",
         "legend": {
           "displayMode": "list",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false
         },
-        "pieType": "pie",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
+        "mergeValues": false,
+        "rowHeight": 0.8,
+        "showValue": "auto",
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -809,263 +951,19 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "exemplar": false,
-          "expr": "count_values(\"http_status_code\", probe_http_status_code)",
-          "instant": true,
-          "legendFormat": "__auto",
-          "range": false,
-          "refId": "A"
-        }
-      ],
-      "title": "Panel Title",
-      "type": "piechart"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 10,
-        "w": 16,
-        "x": 8,
-        "y": 21
-      },
-      "hiddenSeries": false,
-      "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "9.4.7",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [
-        {
-          "$$hashKey": "object:57",
-          "alias": "/.*/",
-          "color": "#C4162A",
-          "lines": false,
-          "pointradius": 1,
-          "points": true
-        }
-      ],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "probe_http_status_code{job=\"$http_job\"} != 200",
-          "interval": "",
-          "legendFormat": "{{ instance }}",
+          "expr": "probe_http_status_code{instance=~\"$bottomk_http\"}",
+          "format": "time_series",
+          "legendFormat": "{{instance}}",
           "range": true,
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "Invalid status code history",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "none",
-          "label": "status code",
-          "logBase": 1,
-          "max": "550",
-          "min": "0",
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-orange",
-                "value": 90
-              },
-              {
-                "color": "dark-yellow",
-                "value": 95
-              },
-              {
-                "color": "dark-green",
-                "value": 99
-              }
-            ]
-          },
-          "unit": "% SSL"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 4,
-        "x": 4,
-        "y": 30
-      },
-      "id": 4,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "expr": "((count(count by (instance) (probe_http_ssl{job=\"$http_job\"} == 1))) / (count(count by (instance) (probe_http_ssl{job=\"$http_job\"})))) * 100",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": " ",
-      "type": "stat"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-orange",
-                "value": 90
-              },
-              {
-                "color": "dark-yellow",
-                "value": 95
-              },
-              {
-                "color": "dark-green",
-                "value": 99
-              }
-            ]
-          },
-          "unit": "% HTTP/200"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 5,
-        "w": 8,
-        "x": 0,
-        "y": 35
-      },
-      "id": 3,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "9.4.7",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
-          },
-          "editorMode": "code",
-          "expr": "((count(count by (instance) (probe_http_status_code == 200))) / (count(count by (instance) (probe_http_status_code)))) * 100",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": " ",
-      "type": "stat"
+      "timeFrom": "1d",
+      "title": "Status code timeline",
+      "type": "state-timeline"
     }
   ],
-  "refresh": "",
+  "refresh": "1m",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -1106,7 +1004,7 @@
           "query": "query_result(bottomk(5, avg_over_time(probe_success{job=\"$http_job\"}[1d]) * 100 ))",
           "refId": "StandardVariableQuery"
         },
-        "refresh": 1,
+        "refresh": 2,
         "regex": "/\"([^\"]+)\"/",
         "skipUrlSync": false,
         "sort": 0,
