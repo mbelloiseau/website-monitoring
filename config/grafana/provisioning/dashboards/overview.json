@@ -813,7 +813,7 @@
           "refId": "B"
         }
       ],
-      "title": " Overview",
+      "title": " Certificate",
       "transformations": [
         {
           "id": "merge",
@@ -829,7 +829,18 @@
               "fingerprint_sha256": false,
               "job": true
             },
-            "indexByName": {},
+            "indexByName": {
+              "Time": 6,
+              "Value #A": 1,
+              "Value #B": 9,
+              "__name__": 8,
+              "fingerprint_sha256": 5,
+              "instance": 0,
+              "issuer": 4,
+              "job": 7,
+              "subject": 2,
+              "subjectalternative": 3
+            },
             "renameByName": {
               "Value #A": "Certificate validity",
               "Value #B": "",
