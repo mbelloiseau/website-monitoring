@@ -1,3 +1,4 @@
 *.local
 targets.*
 !targets.yml.example
+/.env
